@@ -44,7 +44,9 @@ namespace MassageStudioApp.Services
 
         public Client GetClientById(int clientId)
         {
-            throw new NotImplementedException();
+            Client client = _context.Clients.Find(clientId);
+
+            return client;
         }
 
         public string GetFullName(int clientId)

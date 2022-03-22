@@ -11,6 +11,7 @@ namespace MassageStudioApp.Abstractions
         List<Employee> GetEmployees();
 
         Employee GetEmployeeById(int employeeId);
+        Employee GetEmployeeByUserId(string userId);
 
         public bool RemoveById(int employeeId);
 

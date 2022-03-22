@@ -37,7 +37,16 @@ namespace MassageStudioApp.Services
         }
         public Employee GetEmployeeById(int employeeId)
         {
-            throw new NotImplementedException();
+            Employee employee = _context.Employees.Find(employeeId);
+
+            return employee;
+        }
+
+        public Employee GetEmployeeByUserId(string userId)
+        {
+            var employee = _context.Employees.FirstOrDefault(x => x.UserId == userId);
+
+            return employee;
         }
 
         public List<Employee> GetEmployees()

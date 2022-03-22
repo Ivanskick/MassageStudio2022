@@ -21,6 +21,7 @@ namespace MassageStudioApp.Data
         public DbSet<MassageStudioApp.Models.Employee.CreateEmployeeVM> CreateEmployeeVM { get; set; }
         public DbSet<MassageStudioApp.Models.Client.ClientListingVM> ClientListingVM { get; set; }
         public DbSet<MassageStudioApp.Models.Client.CreateClientVM> CreateClientVM { get; set; }
+        public DbSet<MassageStudioApp.Models.Employee.EmployeeListingVM> EmployeeListingVM { get; set; }
 
 
     }
