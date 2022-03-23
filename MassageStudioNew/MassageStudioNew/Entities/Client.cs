@@ -8,6 +8,12 @@ namespace MassageStudioApp.Entities
 {
     public class Client
     {
+        public Client()
+        {
+            this.Massages = new HashSet<Massage>();
+            this.Reservations = new HashSet<Reservation>();
+        }
+        
         [Key]
         public int Id { get; set; }
 
@@ -29,5 +35,7 @@ namespace MassageStudioApp.Entities
         public string UserId { get; set; }
 
         public virtual ApplicationUser User { get; set; }
+        public virtual ICollection<Massage> Massages { get; set; }
+        public virtual ICollection<Reservation> Reservations { get; set; }
     }
 }

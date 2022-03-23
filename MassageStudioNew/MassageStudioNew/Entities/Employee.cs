@@ -8,6 +8,12 @@ namespace MassageStudioApp.Entities
 {
     public class Employee
     {
+        public Employee()
+        {
+            this.Hours = new HashSet<Hour>();
+            this.Massages = new HashSet<Massage>();
+        }
+        
         [Key]
         public int Id { get; set; }
 
@@ -30,5 +36,7 @@ namespace MassageStudioApp.Entities
         public string UserId { get; set; }
 
         public virtual ApplicationUser User { get; set; }
+        public virtual ICollection<Hour> Hours { get; set; }
+        public virtual ICollection<Massage> Massages { get; set; }
     }
 }
