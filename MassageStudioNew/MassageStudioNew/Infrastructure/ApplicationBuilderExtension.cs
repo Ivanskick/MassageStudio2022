@@ -1,4 +1,5 @@
-﻿using MassageStudioApp.Entities;
+﻿using MassageStudioApp.Data;
+using MassageStudioApp.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,7 +21,27 @@ namespace MassageStudioApp.Infrastructure
             await RoleSeeder(services);
             await SeedAdministrator(services);
 
+            var data = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            SeedCategories(data);
+
             return app;
+        }
+        private static void SeedCategories(ApplicationDbContext data)
+        {
+            if (data.Categories.Any())
+            {
+                return;
+            }
+            data.Categories.AddRange(new[]
+            {
+                new Category {Name="Back massage"},
+                new Category {Name="Full body massage"},
+                new Category {Name="Lowerbody massage"},
+                new Category {Name="Upperbody massage"},
+                new Category {Name="Face massage"},
+                new Category {Name="Feet massage"},
+            });
+            data.SaveChanges();
         }
 
         private static async Task RoleSeeder(IServiceProvider serviceProvider)
