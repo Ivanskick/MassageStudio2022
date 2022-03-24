@@ -8,11 +8,11 @@ namespace MassageStudioApp.Entities
 {
     public class Reservation
     {
+        [Key]
         public int Id { get; set; }
 
-        [MinLength(10)]
-        [MaxLength(50)]
-        public string MassageType { get; set; }
+        public int CategoryId { get; set; }
+        public virtual Category Category { get; set; }
 
         [Required]
         public int ClientId { get; set; }

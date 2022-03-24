@@ -8,7 +8,6 @@ namespace MassageStudioApp.Models.Client
 {
     public class ClientListingVM
     {
-        [Key]
         public int Id { get; set; }
 
         [Display(Name = "Email")]
@@ -20,7 +19,6 @@ namespace MassageStudioApp.Models.Client
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
-        [MaxLength(10)]
         public string Phone { get; set; }
 
         public DateTime BirthDate { get; set; }

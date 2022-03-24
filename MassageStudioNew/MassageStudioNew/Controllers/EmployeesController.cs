@@ -24,17 +24,17 @@ namespace MassageStudioApp.Controllers
         }
 
         // GET: EmployeesController
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            var users = (await this._userManager.GetUsersInRoleAsync("Employee"))
+            var users = _employeeService.GetEmployees()
                    .Select(u => new EmployeeListingVM
                    {
-                       Id = _employeeService.GetEmployeeByUserId(u.Id).Id,
-                       FirstName = _employeeService.GetEmployeeByUserId(u.Id).FirstName,
-                       LastName = _employeeService.GetEmployeeByUserId(u.Id).LastName,
-                       Email = u.Email,
-                       Phone = _employeeService.GetEmployeeByUserId(u.Id).Phone,
-                       JobTitle = _employeeService.GetEmployeeByUserId(u.Id).JobTitle
+                       Id = u.Id,
+                       FirstName = u.FirstName,
+                       LastName = u.LastName,
+                       Email = u.User.Email,
+                       Phone = u.Phone,
+                       JobTitle = u.JobTitle
                    }).ToList();
 
             return this.View(users);

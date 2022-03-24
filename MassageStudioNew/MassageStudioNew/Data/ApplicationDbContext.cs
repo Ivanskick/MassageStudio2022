@@ -25,6 +25,10 @@ namespace MassageStudioApp.Data
 
         public  DbSet<Category> Categories { get; set; }
 
+        public DbSet<MassageStudioApp.Entities.Hour> Hour { get; set; }
+
+        public DbSet<MassageStudioApp.Entities.Reservation> Reservation { get; set; }
+
 
 
 

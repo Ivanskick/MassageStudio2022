@@ -24,17 +24,17 @@ namespace MassageStudioApp.Controllers
         }
 
         // GET: ClientsController
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            var users = (await this._userManager.GetUsersInRoleAsync("Client"))
+            var users = _clientService.GetClients()
                   .Select(u => new ClientListingVM
                   {
-                      Id = _clientService.GetClientByUserId(u.Id).Id,
-                      FirstName = _clientService.GetClientByUserId(u.Id).FirstName,
-                      LastName = _clientService.GetClientByUserId(u.Id).LastName,
-                      Email = u.Email,
-                      Phone = _clientService.GetClientByUserId(u.Id).Phone,
-                      BirthDate = _clientService.GetClientByUserId(u.Id).BirthDate
+                      Id = u.Id,
+                      FirstName = u.FirstName,
+                      LastName = u.LastName,
+                      Email = u.User.Email,
+                      Phone = u.Phone,
+                      BirthDate = u.BirthDate
                   }).ToList();
 
             return this.View(users);

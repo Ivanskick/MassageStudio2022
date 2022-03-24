@@ -22,7 +22,7 @@ namespace MassageStudioApp.Services
                 {
                     throw new InvalidOperationException("Client already exist.");
                 }
-            Client clientForDb = new Client()
+            Client clientFromDb = new Client()
                 {
                     FirstName = firstName,
                     LastName = lastName,
@@ -30,7 +30,7 @@ namespace MassageStudioApp.Services
                     BirthDate = birthDate,
                     UserId = userId
                 };
-                _context.Clients.Add(clientForDb);
+                _context.Clients.Add(clientFromDb);
 
                 return _context.SaveChanges() != 0;
         }
