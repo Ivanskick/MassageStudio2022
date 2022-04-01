@@ -7,6 +7,7 @@ using System.Text;
 using MassageStudioApp.Models.Employee;
 using MassageStudioApp.Models.Client;
 using MassageStudioApp.Models.Hour;
+using MassageStudioApp.Models.Reservation;
 
 namespace MassageStudioApp.Data
 {
@@ -33,6 +34,8 @@ namespace MassageStudioApp.Data
         public DbSet<MassageStudioApp.Models.Hour.AddHourVM> AddHourVM { get; set; }
 
         public DbSet<MassageStudioApp.Models.Hour.AllHoursVM> AllHoursVM { get; set; }
+
+        public DbSet<MassageStudioApp.Models.Reservation.AddReservationVM> AddReservationVM { get; set; }
 
 
 

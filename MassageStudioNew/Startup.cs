@@ -42,6 +42,8 @@ namespace MassageStudioApp
             services.AddTransient<IEmployeeService, EmployeeService>();
             services.AddTransient<IClientService, ClientService>();
             services.AddTransient<IHourService, HourService>();
+            services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<IReservationService, ReservationService>();
 
 
             services.AddRazorPages();
