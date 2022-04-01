@@ -33,15 +33,35 @@
                                        data-toggle="dropdown"
                                        aria-haspopup="true"
                                        aria-expanded="false">
-                                        Offers
+                                        Massager
                                     </a>
                                     <div class="dropdown-menu" aria-labelledbly="dropdownMenuLink">
-                                        <a class="dropdown-item"  href="/Offers/Index">All</a>
-                                        <a class="dropdown-item" href="/Offers/Create">Add</a>
+                                        <a class="dropdown-item" href="/Employees/Index">All</a>
+                                        <a class="dropdown-item" href="/Employees/Create">Add</a>
                                     </div>
                                 </div>
                             </li>
                         }
+
+                        @if ((this.User.Identity.IsAuthenticated))
+                        {
+                            <li class="nav-item active">
+                                <div class="dropdown show">
+                                    <a class="nav-link active dropdown-toggle" href="#"
+                                       id="dropdownMenuLink"
+                                       data-toggle="dropdown"
+                                       aria-haspopup="true"
+                                       aria-expanded="false">
+                                       Hours
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledbly="dropdownMenuLink">
+                                        <a class="dropdown-item" href="/Hours/Index">All</a>
+                                        <a class="dropdown-item" href="/Hours/Create">Add</a>
+                                    </div>
+                                </div>
+                            </li>
+                        }
+
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

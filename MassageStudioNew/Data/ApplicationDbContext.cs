@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using MassageStudioApp.Models.Employee;
 using MassageStudioApp.Models.Client;
+using MassageStudioApp.Models.Hour;
 
 namespace MassageStudioApp.Data
 {
@@ -25,9 +26,13 @@ namespace MassageStudioApp.Data
 
         public  DbSet<Category> Categories { get; set; }
 
-        public DbSet<MassageStudioApp.Entities.Hour> Hour { get; set; }
+        public DbSet<MassageStudioApp.Entities.Hour> Hours { get; set; }
 
-        public DbSet<MassageStudioApp.Entities.Reservation> Reservation { get; set; }
+        public DbSet<MassageStudioApp.Entities.Reservation> Reservations { get; set; }
+
+        public DbSet<MassageStudioApp.Models.Hour.AddHourVM> AddHourVM { get; set; }
+
+        public DbSet<MassageStudioApp.Models.Hour.AllHoursVM> AllHoursVM { get; set; }
 
 
 

@@ -58,12 +58,27 @@ namespace MassageStudioApp.Services
 
         public string GetFullName(int employeeId)
         {
-            throw new NotImplementedException();
+            Employee employee = _context.Employees.Find(employeeId);
+            string fullName = employee.FirstName + " " + employee.LastName;
+            return fullName;
         }
 
         public bool RemoveById(int employeeId)
         {
-            throw new NotImplementedException();
+            var item = _context.Employees
+                 .FirstOrDefault(c => c.Id == employeeId);
+            if (item != null)
+            {
+                _context.Employees
+                    .Remove(item);
+                return _context.SaveChanges() != 0;
+
+            }
+            else
+            {
+                //I'm deleting non-existent ID
+                return false;
+            }
         }
     }
 }

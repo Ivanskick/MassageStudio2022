@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MassageStudioApp.Entities.Reservation>
+﻿@model IEnumerable<MassageStudioApp.Models.Hour.AllHoursVM>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,13 +13,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Category)
+                @Html.DisplayNameFor(model => model.FreeHour)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Client)
+                @Html.DisplayNameFor(model => model.IsBusy)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.HourId)
+                @Html.DisplayNameFor(model => model.EmployeeFullName)
             </th>
             <th></th>
         </tr>
@@ -28,13 +28,13 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Category.Name)
+                @Html.DisplayFor(modelItem => item.FreeHour)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Client.FirstName)
+                @Html.DisplayFor(modelItem => item.IsBusy)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.HourId)
+                @Html.DisplayFor(modelItem => item.EmployeeFullName)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

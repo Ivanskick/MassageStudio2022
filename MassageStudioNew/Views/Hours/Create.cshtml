@@ -1,4 +1,4 @@
-﻿@model MassageStudioApp.Entities.Hour
+﻿@model MassageStudioApp.Models.Hour.AddHourVM
 
 @{
     ViewData["Title"] = "Create";
@@ -6,7 +6,7 @@
 
 <h1>Create</h1>
 
-<h4>Hour</h4>
+<h4>AddHourVM</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -17,18 +17,15 @@
                 <input asp-for="FreeHour" class="form-control" />
                 <span asp-validation-for="FreeHour" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsDeleted" /> @Html.DisplayNameFor(model => model.IsDeleted)
-                </label>
-            </div>
             <div class="form-group">
                 <label asp-for="EmployeeId" class="control-label"></label>
-                <select asp-for="EmployeeId" class ="form-control" asp-items="ViewBag.EmployeeId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="ReservationId" class="control-label"></label>
-                <select asp-for="ReservationId" class ="form-control" asp-items="ViewBag.ReservationId"></select>
+                <select asp-for="EmployeeId" class="form-control">
+                    @foreach (var employee in Model.Employees)
+                    {
+                        <option value="@employee.EmployeeId">@employee.FullName</option>
+                    }
+                </select>
+                <span asp-validation-for="EmployeeId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
