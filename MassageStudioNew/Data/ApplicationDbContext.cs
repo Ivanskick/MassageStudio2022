@@ -37,6 +37,8 @@ namespace MassageStudioApp.Data
 
         public DbSet<MassageStudioApp.Models.Reservation.AddReservationVM> AddReservationVM { get; set; }
 
+        public DbSet<MassageStudioApp.Models.Reservation.AllReservationsVM> AllReservationsVM { get; set; }
+
 
 
 

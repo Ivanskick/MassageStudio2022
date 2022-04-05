@@ -34,5 +34,13 @@ namespace MassageStudioApp.Services
             _context.Update(hour);
             return _context.SaveChanges() != 0;
         }
+
+            public List<Reservation> GetReservations()
+            {
+                List<Reservation> reservations = _context.Reservations
+                    .ToList();
+                return reservations;
+            }
     }
 }
+

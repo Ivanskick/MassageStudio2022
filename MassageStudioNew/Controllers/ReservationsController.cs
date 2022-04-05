@@ -30,7 +30,15 @@ namespace MassageStudioApp.Controllers
         // GET: ReservationsController
         public ActionResult Index()
         {
-            return View();
+            List<AllReservationsVM> reservations = _reservationService.GetReservations()
+               .Select(item => new AllReservationsVM()
+               {
+                   Id = item.Id,
+                   CategoryName = item.Category.Name,
+                   HourId = item.HourId,
+                   ClientId = item.ClientId
+        }).ToList();
+            return View(reservations);
         }
 
         // GET: ReservationsController/Details/5
