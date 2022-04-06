@@ -13,12 +13,10 @@ namespace MassageStudioApp.Models.Reservation
 
         public string CategoryName { get; set; }
 
+        public string ClientFullName { get; set; }
 
-        [Required]
-        public int ClientId { get; set; }
-
-        [Required]
-        public int HourId { get; set; }
-       // public string EmployeeFullName { get; set; }
+        public DateTime HourStart { get; set; }
+        
+        public string EmployeeFullName { get; set; }
     }
 }

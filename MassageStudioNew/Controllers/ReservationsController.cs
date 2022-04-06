@@ -35,9 +35,10 @@ namespace MassageStudioApp.Controllers
                {
                    Id = item.Id,
                    CategoryName = item.Category.Name,
-                   HourId = item.HourId,
-                   ClientId = item.ClientId
-        }).ToList();
+                   HourStart = item.Hour.FreeHour,
+                   ClientFullName = item.Client.FirstName + " " + item.Client.LastName,
+                   EmployeeFullName = item.Hour.Employee.FirstName + " " + item.Hour.Employee.LastName,
+               }).ToList();
             return View(reservations);
         }
 
