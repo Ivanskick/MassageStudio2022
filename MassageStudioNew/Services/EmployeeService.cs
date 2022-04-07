@@ -80,5 +80,20 @@ namespace MassageStudioApp.Services
                 return false;
             }
         }
+            public bool UpdateEmployee(int employeeId, string firstName, string lastName, string phone, string jobTitle)
+            {
+                var employee = GetEmployeeById(employeeId);
+
+                if (employee == default(Employee))
+                {
+                    return false;
+                }
+                employee.FirstName = firstName;
+                employee.LastName = lastName;
+                employee.Phone = phone;
+                employee.JobTitle = jobTitle;
+                _context.Update(employee);
+                return _context.SaveChanges() != 0;
+            }
     }
 }

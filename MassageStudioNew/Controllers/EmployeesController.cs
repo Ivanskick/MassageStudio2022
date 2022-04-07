@@ -43,7 +43,21 @@ namespace MassageStudioApp.Controllers
         // GET: EmployeesController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Employee item = _employeeService.GetEmployeeById(id);
+            if (item == null)
+            {
+                return NotFound();
+            }
+            EmployeeDetailsVM employee = new EmployeeDetailsVM()
+            {
+                Id = item.Id,
+                Email = item.User.Email,
+                FirstName = item.FirstName,
+                LastName = item.LastName,
+                Phone = item.Phone,
+                JobTitle = item.JobTitle
+            };
+            return View(employee);
         }
 
         // GET: EmployeesController/Create
@@ -87,22 +101,26 @@ namespace MassageStudioApp.Controllers
         // GET: EmployeesController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Employee item = _employeeService.GetEmployeeById(id);
+            {
+                return View(item);
+            }
         }
 
         // POST: EmployeesController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, EditEmployeeVM bindingModel)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                var updated = _employeeService.UpdateEmployee(id, bindingModel.FirstName, bindingModel.LastName, bindingModel.Phone,  bindingModel.JobTitle);
+                if (updated)
+                {
+                    return this.RedirectToAction("Index");
+                }
             }
-            catch
-            {
-                return View();
-            }
+            return View(bindingModel);
         }
 
         // GET: EmployeesController/Delete/5

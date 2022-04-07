@@ -18,5 +18,7 @@ namespace MassageStudioApp.Abstractions
         string GetFullName(int employeeId);
 
         bool CreateEmployee(string firstName, string lastName, string phone, string jobTitle, string userId);
+
+        public bool UpdateEmployee(int employeeId, string firstName, string lastName, string phone, string jobTitle);
     }
 }
