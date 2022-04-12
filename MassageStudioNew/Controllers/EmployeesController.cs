@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace MassageStudioApp.Controllers
 {
-    
+
     public class EmployeesController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -71,18 +71,18 @@ namespace MassageStudioApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(CreateEmployeeVM employee)
         {
-           if (!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View(employee);
             }
-           if (await _userManager.FindByNameAsync (employee.Username) == null)
+            if (await _userManager.FindByNameAsync(employee.Username) == null)
             {
                 ApplicationUser user = new ApplicationUser();
                 user.UserName = employee.Username;
                 user.Email = employee.Email;
 
                 var result = await _userManager.CreateAsync(user, "Employee123!");
- 
+
                 if (result.Succeeded)
                 {
                     var created = _employeeService.CreateEmployee(employee.FirstName, employee.LastName, employee.Phone, employee.JobTitle, user.Id);
@@ -125,7 +125,7 @@ namespace MassageStudioApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var updated = _employeeService.UpdateEmployee(id, bindingModel.FirstName, bindingModel.LastName, bindingModel.Phone,  bindingModel.JobTitle);
+                var updated = _employeeService.UpdateEmployee(id, bindingModel.FirstName, bindingModel.LastName, bindingModel.Phone, bindingModel.JobTitle);
                 if (updated)
                 {
                     return this.RedirectToAction("Index");
@@ -135,9 +135,22 @@ namespace MassageStudioApp.Controllers
         }
 
         // GET: EmployeesController/Delete/5
-        public ActionResult Delete(int id)
+        public IActionResult Delete(int id)
         {
-            return View();
+            Employee item = _employeeService.GetEmployeeById(id);
+            if (item == null)
+            {
+                return NotFound();
+            }
+            EmployeeDetailsVM employee = new EmployeeDetailsVM()
+            {
+                Id = item.Id,
+                FirstName = item.FirstName,
+                LastName = item.LastName,
+                Phone = item.Phone,
+                JobTitle = item.JobTitle
+            };
+            return View(employee);
         }
 
         // POST: EmployeesController/Delete/5
@@ -145,14 +158,17 @@ namespace MassageStudioApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
-            try
+            var deleted = _employeeService.RemoveById(id);
+
+            if (deleted)
             {
-                return RedirectToAction(nameof(Index));
+                return this.RedirectToAction("Index", "Employees");
             }
-            catch
+            else
             {
                 return View();
             }
+
         }
     }
 }

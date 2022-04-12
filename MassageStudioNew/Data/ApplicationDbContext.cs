@@ -41,6 +41,8 @@ namespace MassageStudioApp.Data
 
         public DbSet<MassageStudioApp.Models.Employee.EditEmployeeVM> EditEmployeeVM { get; set; }
 
+        public DbSet<MassageStudioApp.Models.Employee.EmployeeDetailsVM> EmployeeDetailsVM { get; set; }
+
 
 
 
