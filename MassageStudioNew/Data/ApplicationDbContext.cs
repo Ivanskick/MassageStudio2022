@@ -8,6 +8,7 @@ using MassageStudioApp.Models.Employee;
 using MassageStudioApp.Models.Client;
 using MassageStudioApp.Models.Hour;
 using MassageStudioApp.Models.Reservation;
+using MassageStudioApp.Models.Category;
 
 namespace MassageStudioApp.Data
 {
@@ -42,6 +43,12 @@ namespace MassageStudioApp.Data
         public DbSet<MassageStudioApp.Models.Employee.EditEmployeeVM> EditEmployeeVM { get; set; }
 
         public DbSet<MassageStudioApp.Models.Employee.EmployeeDetailsVM> EmployeeDetailsVM { get; set; }
+
+        public DbSet<MassageStudioApp.Models.Category.CreateCategoryVM> CreateCategoryVM { get; set; }
+
+        public DbSet<MassageStudioApp.Models.Category.CategoryListingVM> CategoryListingVM { get; set; }
+
+        public DbSet<MassageStudioApp.Models.Category.CategoryDetailsVM> CategoryDetailsVM { get; set; }
 
 
 
