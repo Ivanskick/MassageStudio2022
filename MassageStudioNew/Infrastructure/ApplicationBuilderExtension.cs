@@ -34,12 +34,12 @@ namespace MassageStudioApp.Infrastructure
             }
             data.Categories.AddRange(new[]
             {
-                new Category {Name="Back massage"},
-                new Category {Name="Full body massage"},
-                new Category {Name="Lowerbody massage"},
-                new Category {Name="Upperbody massage"},
-                new Category {Name="Face massage"},
-                new Category {Name="Feet massage"},
+                new Category {Name="Back massage", Description="maslo ot avocado", Price=60.00m},
+                new Category {Name="Full body massage", Description="maslo ot avocado", Price=90.00m},
+                new Category {Name="Lowerbody massage", Description="maslo ot avocado", Price=65.00m},
+                new Category {Name="Upperbody massage", Description="maslo ot avocado", Price=60.00m},
+                new Category {Name="Face massage", Description="maslo ot avocado", Price=40.00m},
+                new Category {Name="Feet massage", Description="maslo ot avocado", Price=50.00m},
             });
             data.SaveChanges();
         }

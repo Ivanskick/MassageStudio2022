@@ -2,6 +2,7 @@
 using MassageStudioApp.Entities;
 using MassageStudioApp.Models.Category;
 using MassageStudioApp.Models.Reservation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -49,6 +50,7 @@ namespace MassageStudioApp.Controllers
         }
 
         // GET: ReservationsController/Create
+        [Authorize(Roles="Client")]
         public ActionResult Create(int id)
         {
             if (id == 0)
@@ -79,6 +81,7 @@ namespace MassageStudioApp.Controllers
         // POST: ReservationsController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Client")]
         public ActionResult Create(int id, AddReservationVM model)
         {
             if (!this.ModelState.IsValid)

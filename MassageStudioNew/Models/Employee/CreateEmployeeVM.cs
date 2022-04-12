@@ -26,6 +26,7 @@ namespace MassageStudioApp.Models.Employee
 
         [Required]
         [Display(Name = "Last Name")]
+        [StringLength(30, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 2)]
         public string LastName { get; set; }
 
         [Required]

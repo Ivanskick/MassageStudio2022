@@ -102,9 +102,20 @@ namespace MassageStudioApp.Controllers
         public ActionResult Edit(int id)
         {
             Employee item = _employeeService.GetEmployeeById(id);
+            if (item == null)
             {
-                return View(item);
+                return NotFound();
             }
+            EditEmployeeVM employee = new EditEmployeeVM()
+            {
+                Id = item.Id,
+                FirstName = item.FirstName,
+                LastName = item.LastName,
+                Phone = item.Phone,
+                JobTitle = item.JobTitle
+            };
+            return View(employee);
+
         }
 
         // POST: EmployeesController/Edit/5
