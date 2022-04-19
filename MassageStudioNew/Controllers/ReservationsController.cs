@@ -142,5 +142,20 @@ namespace MassageStudioApp.Controllers
                 return View();
             }
         }
+
+        public ActionResult My()
+        {
+            string currentUserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            List<AllReservationsVM> reservations = this._reservationService.GetReservations()
+                .Where(o => o.Client.UserId == currentUserId)
+                .Select(item => new AllReservationsVM()
+                {
+                    Id = item.Id,
+                    CategoryName = item.Category.Name,
+                    HourStart = item.Hour.FreeHour,
+                    ClientFullName = item.Client.FirstName + " " + item.Hour.Employee.LastName
+                }).ToList();
+            return View(reservations);
+        }
     }
 }

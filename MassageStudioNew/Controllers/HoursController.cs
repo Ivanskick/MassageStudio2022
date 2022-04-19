@@ -1,4 +1,5 @@
 ﻿using MassageStudioApp.Abstractions;
+using MassageStudioApp.Entities;
 using MassageStudioApp.Models.Employee;
 using MassageStudioApp.Models.Hour;
 using Microsoft.AspNetCore.Http;
@@ -41,7 +42,20 @@ namespace MassageStudioApp.Controllers
         // GET: HoursController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Hour item = _hourService.GetHourById(id);
+            if (item == null)
+            {
+                return NotFound();
+            }
+            HourDetailsVM hour = new HourDetailsVM()
+            {
+                Id = item.Id,
+                FreeHour = item.FreeHour,
+                IsDeleted = item.IsDeleted,
+                EmployeeId = item.EmployeeId,
+                ReservationId = item.ReservationId
+            };
+            return View(hour);
         }
 
         // GET: HoursController/Create
@@ -79,28 +93,60 @@ namespace MassageStudioApp.Controllers
         // GET: HoursController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Hour item = _hourService.GetHourById(id);
+            if (item == null)
+            {
+                return NotFound();
+            }
+            EditHourVM hour = new EditHourVM()
+            {
+                Id = item.Id,
+                FreeHour = item.FreeHour
+            };
+            hour.Employees = _employeeService.GetEmployees()
+                 .Select(c => new EmployeePairVM()
+                 {
+                     EmployeeId = c.Id,
+                     FullName = c.FirstName + " " + c.LastName
+                 })
+                 .ToList();
+            return View(hour);
         }
 
         // POST: HoursController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, EditHourVM bindingModel)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                var updated = _hourService.UpdateHour(id, bindingModel.FreeHour, bindingModel.EmployeeId);
+                if (updated)
+                {
+                    return this.RedirectToAction("Index");
+                }
             }
-            catch
-            {
-                return View();
-            }
+            return View(bindingModel);
         }
+    
 
         // GET: HoursController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            Hour item = _hourService.GetHourById(id);
+            if (item == null)
+            {
+                return NotFound();
+            }
+            HourDetailsVM hour = new HourDetailsVM()
+            {
+                Id = item.Id,
+                FreeHour = item.FreeHour,
+                IsDeleted = item.IsDeleted,
+                EmployeeId = item.EmployeeId,
+                ReservationId = item.ReservationId
+            };
+            return View(hour);
         }
 
         // POST: HoursController/Delete/5
@@ -108,11 +154,13 @@ namespace MassageStudioApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
-            try
+            var deleted = _hourService.RemoveById(id);
+
+            if (deleted)
             {
-                return RedirectToAction(nameof(Index));
+                return this.RedirectToAction("Index", "Hours");
             }
-            catch
+            else
             {
                 return View();
             }

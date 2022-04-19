@@ -50,6 +50,12 @@ namespace MassageStudioApp.Data
 
         public DbSet<MassageStudioApp.Models.Category.CategoryDetailsVM> CategoryDetailsVM { get; set; }
 
+        public DbSet<MassageStudioApp.Models.Hour.HourDetailsVM> HourDetailsVM { get; set; }
+
+        public DbSet<MassageStudioApp.Models.Hour.EditHourVM> EditHourVM { get; set; }
+
+        public DbSet<MassageStudioApp.Entities.Massage> Massage { get; set; }
+
 
 
 

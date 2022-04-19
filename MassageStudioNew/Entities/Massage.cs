@@ -8,14 +8,9 @@ namespace MassageStudioApp.Entities
 {
     public class Massage
     {
-        public Massage()
-        {
-            this.Id = Guid.NewGuid().ToString();
-        }
 
         [Key]
-        [Required]
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         public DateTime Date { get; set; }
 

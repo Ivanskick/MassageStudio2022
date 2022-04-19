@@ -100,10 +100,10 @@ namespace MassageStudioApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var updated = _categoryService.UpdateCategory(bindingModel.Name, bindingModel.Description, bindingModel.Price);
+                var updated = _categoryService.UpdateCategory(id, bindingModel.Name, bindingModel.Description, bindingModel.Price);
                 if (updated)
                 {
-                    return this.RedirectToAction("All");
+                    return this.RedirectToAction("Index");
                 }
 
             }

@@ -14,7 +14,7 @@ namespace MassageStudioApp.Abstractions
 
         bool Create(string Name, string Description, decimal Price);
         
-        bool UpdateCategory(string Name, string Description, decimal Price);
+        bool UpdateCategory(int id, string name, string description, decimal price);
         bool RemoveById(int Id);
     }
 }

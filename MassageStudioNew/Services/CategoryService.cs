@@ -38,7 +38,8 @@ namespace MassageStudioApp.Services
 
         public Category GetCategoryById(int id)
         {
-            throw new NotImplementedException();
+            var category=_context.Categories.Find(id);
+            return category;
         }
 
         public bool RemoveById(int Id)
@@ -52,9 +53,19 @@ namespace MassageStudioApp.Services
             return _context.SaveChanges() != 0;
         }
 
-        public bool UpdateCategory(string Name, string Description, decimal Price)
+        public bool UpdateCategory(int id,  string name, string description, decimal price)
         {
-            throw new NotImplementedException();
+            var category = GetCategoryById(id);
+
+            if (category == default(Category))
+            {
+                return false;
+            }
+            category.Name = name;
+            category.Description = description;
+            category.Price = price;
+            _context.Update(category);
+            return _context.SaveChanges() != 0;
         }
     }
 }
