@@ -20,12 +20,12 @@ namespace MassageStudioApp.Controllers
         }
 
         // GET: Massages
-        
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Massage.Include(m => m.Category).Include(m => m.Client).Include(m => m.Employee);
+            var applicationDbContext = _context.Massages.Include(m => m.Category).Include(m => m.Client).Include(m => m.Employee);
             return View(await applicationDbContext.ToListAsync());
         }
+
         // GET: Massages/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -34,7 +34,7 @@ namespace MassageStudioApp.Controllers
                 return NotFound();
             }
 
-            var massage = await _context.Massage
+            var massage = await _context.Massages
                 .Include(m => m.Category)
                 .Include(m => m.Client)
                 .Include(m => m.Employee)
@@ -83,7 +83,7 @@ namespace MassageStudioApp.Controllers
                 return NotFound();
             }
 
-            var massage = await _context.Massage.FindAsync(id);
+            var massage = await _context.Massages.FindAsync(id);
             if (massage == null)
             {
                 return NotFound();
@@ -140,7 +140,7 @@ namespace MassageStudioApp.Controllers
                 return NotFound();
             }
 
-            var massage = await _context.Massage
+            var massage = await _context.Massages
                 .Include(m => m.Category)
                 .Include(m => m.Client)
                 .Include(m => m.Employee)
@@ -158,15 +158,15 @@ namespace MassageStudioApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var massage = await _context.Massage.FindAsync(id);
-            _context.Massage.Remove(massage);
+            var massage = await _context.Massages.FindAsync(id);
+            _context.Massages.Remove(massage);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool MassageExists(int id)
         {
-            return _context.Massage.Any(e => e.Id == id);
+            return _context.Massages.Any(e => e.Id == id);
         }
     }
 }
