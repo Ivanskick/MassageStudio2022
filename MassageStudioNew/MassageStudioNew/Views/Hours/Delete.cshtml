@@ -1,0 +1,45 @@
+﻿@model MassageStudioApp.Models.Hour.HourDetailsVM
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Изтриване на часа</h1>
+
+<h3>Сигурни ли сте, че искате да изтриете часа?</h3>
+<div>
+    <h4>Детайли за часа</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FreeHour)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FreeHour)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EmployeeId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EmployeeId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ReservationId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ReservationId)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Изтрий" class="btn btn-danger" /> |
+        <a asp-action="Index">Обратно към списъка</a>
+    </form>
+</div>
