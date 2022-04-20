@@ -5,6 +5,7 @@ a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
+
 }
 
 /* Provide sufficient contrast against white background */
@@ -59,8 +60,8 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
 }
 .footer {
     position: absolute;
